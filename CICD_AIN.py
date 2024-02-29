@@ -56,38 +56,6 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# Train a machine learning model
-# print('Train the model')
-# model = RandomForestClassifier()
-# params = {
-#     'n_estimators': [100, 200, 500],
-#     'max_depth': [10, 20, 30],
-#     'min_samples_leaf': [1, 2, 5]
-# }
-
-# clf = GridSearchCV(model, params, cv=5, n_jobs=-1)
-# clf.fit(X_train, y_train)
-# print("Best params:", clf.best_params_)
-# print("Best score:", clf.best_score_)
-
-# # Evaluate the trained model on the test data
-# print('Evaluate the trained model on the test data')
-# y_pred = clf.predict(X_test)
-# print("Classification Report:")
-# print(classification_report(y_test, y_pred))
-# print("Accuracy Score:", accuracy_score(y_test, y_pred))
-
-# # Plot the feature importance
-# print('Plot the feature importance')
-# importance = clf.best_estimator_.feature_importances_
-# sorted_idx = np.argsort(importance)[::-1]
-# features = X_train.columns
-# plt.figure(figsize=(10, 6))
-# plt.title("Feature Importance")
-# plt.bar(range(len(importance)), importance[sorted_idx])
-# plt.xticks(range(len(importance)), features[sorted_idx], rotation=90)
-# plt.show()
-
 # Train a deep learning model
 print('Train a deep learning model')
 y_train_categ = to_categorical(y_train)
