@@ -5,18 +5,20 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score
 import random
 
+from CICDS_pipeline import cicidspipeline
+
 # Step 1: Data Preparation with Poisoned Data
 def generate_data():
     # Replace with actual data loading
-    X_train = np.random.rand(100, 10)
-    y_train = np.random.randint(2, size=100)
-    X_test = np.random.rand(20, 10)
-    y_test = np.random.randint(2, size=20)
+    cipl = cicidspipeline()
+
+    X_train, y_train, X_test, y_test = cipl.cicids_data_binary()
+
     
     # Introduce poisoned data
     num_poisoned = int(0.1 * len(X_train))  # 10% poisoned data
     poisoned_indices = np.random.choice(len(X_train), num_poisoned, replace=False)
-    X_train[poisoned_indices] = np.random.rand(num_poisoned, 10)
+    X_train[poisoned_indices] = np.random.rand(num_poisoned, 78)
     y_train[poisoned_indices] = 1 - y_train[poisoned_indices]  # Flip the labels
 
     return X_train, y_train, X_test, y_test, poisoned_indices
